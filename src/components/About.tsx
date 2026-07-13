@@ -111,7 +111,7 @@ export default function About() {
             className="font-sans text-sm md:text-base text-gray-400 tracking-wider space-y-6 leading-relaxed max-w-xl"
           >
             <p>
-              Founded on the belief that a home is the ultimate expression of personal philosophy, Aura Legacy Group bridges the gap between premium fine art and physical form. Every estate we construct is a unique monument, crafted in collaboration with elite Pritzker-winning visionaries.
+              Founded on the belief that a home is the ultimate expression of personal philosophy, SAB Group bridges the gap between premium fine art and physical form. Every estate we construct is a unique monument, crafted in collaboration with elite Pritzker-winning visionaries.
             </p>
             <p>
               By combining rare materials, cutting-edge engineering, and a meticulous respect for the surrounding landscape, we build sanctuary-grade residences that offer both absolute seclusion and profound aesthetic dialogue.
@@ -130,6 +130,7 @@ export default function About() {
             
             {/* Parallax Image */}
             <div className="w-full h-full overflow-hidden relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 ref={imageRef}
                 src="/images/detail.png"

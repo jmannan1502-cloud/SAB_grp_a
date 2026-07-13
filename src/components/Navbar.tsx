@@ -56,8 +56,8 @@ export default function Navbar() {
             className="flex items-center gap-2.5 font-serif text-lg tracking-[0.25em] text-white uppercase group"
           >
             <Landmark className="w-5 h-5 text-gold-400 group-hover:rotate-6 transition-transform duration-500" />
-            <span className="font-light">AURA</span>
-            <span className="text-gold-400 font-medium tracking-[0.3em] ml-0.5">LEGACY</span>
+            <span className="font-light">SAB</span>
+            <span className="text-gold-400 font-medium tracking-[0.3em] ml-0.5">GROUP</span>
           </a>
 
           {/* Desktop Nav Links */}

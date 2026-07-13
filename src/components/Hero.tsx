@@ -104,7 +104,7 @@ export default function Hero() {
 
         <div className="flex flex-col md:flex-row gap-8 items-start md:items-center w-full justify-between mt-4">
           <p className="font-sans text-sm md:text-base text-gray-400 tracking-wider max-w-xl leading-relaxed">
-            Aura Legacy Group defines the ultimate apex of bespoke residential development. We conceptualize, build, and list properties that stand as permanent sculptural testaments to luxury.
+            SAB Group defines the ultimate apex of bespoke residential development. We conceptualize, build, and list properties that stand as permanent sculptural testaments to luxury.
           </p>
           
           <a

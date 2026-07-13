@@ -38,7 +38,8 @@ export default function Projects() {
 
       // Animate card content slight parallax/fades as they come into view
       const cards = gsap.utils.toArray(".project-card");
-      cards.forEach((card: any) => {
+      cards.forEach((cardNode) => {
+        const card = cardNode as HTMLElement;
         gsap.fromTo(
           card.querySelector(".project-info"),
           { opacity: 0, y: 30 },
@@ -50,7 +51,7 @@ export default function Projects() {
             scrollTrigger: {
               trigger: card,
               containerAnimation: gsap.globalTimeline.getChildren().find(
-                (child) => (child.vars as any).scrollTrigger?.trigger === container
+                (child) => (child.vars as { scrollTrigger?: { trigger?: unknown } }).scrollTrigger?.trigger === container
               ) as gsap.core.Animation | undefined, // sync with horizontal parent scroll
               start: "left 70%",
               toggleActions: "play none none reverse",
@@ -73,7 +74,7 @@ export default function Projects() {
       sqft: "18,400 SQ FT",
     },
     {
-      title: "Aura Pavilion",
+      title: "SAB Pavilion",
       location: "EMIRATES HILLS, DUBAI",
       type: "SIGNATURE RESIDENCE",
       image: "/images/lobby.png",
@@ -121,6 +122,7 @@ export default function Projects() {
           >
             {/* Background parallax image effect */}
             <div className="absolute inset-0 bg-matte-black/40 z-10" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={project.image}
               alt={project.title}
@@ -131,6 +133,7 @@ export default function Projects() {
               {/* Left Column: Image Card */}
               <div className="md:col-span-7 aspect-[16/10] md:aspect-[16/9] w-full overflow-hidden border border-gold-900/25 p-2 bg-matte-dark/40 backdrop-blur-md rounded-sm">
                 <div className="w-full h-full overflow-hidden relative group">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={project.image}
                     alt={project.title}
@@ -178,7 +181,7 @@ export default function Projects() {
                       ARCHITECT
                     </span>
                     <span className="text-xs md:text-sm tracking-wider text-gray-300">
-                      AURA GROUP
+                      SAB GROUP
                     </span>
                   </div>
                   <div>

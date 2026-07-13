@@ -18,8 +18,8 @@ export default function Footer() {
           <div className="md:col-span-4 flex flex-col items-start gap-4">
             <div className="flex items-center gap-2.5 font-serif text-lg tracking-[0.25em] text-white uppercase">
               <Landmark className="w-5 h-5 text-gold-400" />
-              <span>AURA</span>
-              <span className="text-gold-400 font-medium tracking-[0.3em] ml-0.5">LEGACY</span>
+              <span>SAB</span>
+              <span className="text-gold-400 font-medium tracking-[0.3em] ml-0.5">GROUP</span>
             </div>
             <p className="font-sans text-xs text-gray-500 tracking-wider leading-relaxed max-w-xs mt-2">
               Bespoke real estate development and private brokerage. Establishing monuments to high-end modernist architecture since MCMLXXXII.
@@ -88,7 +88,7 @@ export default function Footer() {
         {/* Bottom Metadata & Copyrights */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 gap-6">
           <span className="font-sans text-[9px] tracking-widest text-gray-500 uppercase">
-            © {new Date().getFullYear()} AURA LEGACY GROUP S.A. ALL PRIVILEGES RESERVED.
+            © {new Date().getFullYear()} SAB GROUP S.A. ALL PRIVILEGES RESERVED.
           </span>
           <div className="flex gap-8 font-sans text-[9px] tracking-widest text-gray-500 uppercase">
             <a href="#" className="hover:text-gold-400 transition-colors">Instagram</a>

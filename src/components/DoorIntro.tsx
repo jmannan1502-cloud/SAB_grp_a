@@ -235,10 +235,10 @@ export default function DoorIntro() {
         <div className="flex flex-col items-center gap-2 mt-8">
           <Landmark className="w-8 h-8 text-gold-400 mb-1" />
           <h2 className="font-serif text-3xl md:text-4xl tracking-[0.3em] text-white font-light">
-            AURA
+            SAB
           </h2>
           <span className="font-sans text-[9px] md:text-[10px] tracking-[0.4em] text-gold-400/80 uppercase">
-            LEGACY GROUP
+            GROUP
           </span>
         </div>
 
