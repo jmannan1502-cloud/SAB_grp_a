@@ -1,34 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
+  /* Gold accent palette */
   --color-gold-50: #fcf9ee;
   --color-gold-100: #f7f1d4;
   --color-gold-200: #eedda7;
   --color-gold-300: #e2c370;
-  --color-gold-400: #d4a53d;
-  --color-gold-500: #c28b2c;
-  --color-gold-600: #a76d22;
-  --color-gold-700: #86511b;
-  --color-gold-800: #6d401a;
-  --color-gold-900: #5c3519;
-  --color-gold-950: #351b0b;
+  --color-gold-400: #c89b4e;
+  --color-gold-500: #b8860b;
+  --color-gold-600: #9a6f09;
+  --color-gold-700: #7a5507;
+  --color-gold-800: #5e4006;
+  --color-gold-900: #3e2a04;
 
+  /* Navy/dark palette */
+  --color-navy-900: #0f172a;
+  --color-navy-800: #1e293b;
+  --color-navy-700: #263447;
+  --color-navy-600: #334155;
+
+  /* Light body palette */
+  --color-body-bg: #f0f2f5;
+  --color-card-white: #ffffff;
+  --color-section-light: #eef0f3;
+
+  /* Legacy compat */
   --color-matte-black: #0c0c0c;
-  --color-matte-dark: #050505;
-  --color-gold: #c28b2c;
+  --color-matte-dark: #0f172a;
+  --color-gold: #c89b4e;
 
-  --font-serif: 'Cormorant Garamond', Georgia, Cambria, serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: Georgia, Cambria, serif;
 }
 
 :root {
-  --background: #050505;
-  --foreground: #f3f4f6;
-  --gold: #d4a53d;
-  --gold-glow: rgba(212, 165, 61, 0.15);
-  --font-cormorant: 'Cormorant Garamond', Georgia, Cambria, serif;
+  --background: #f0f2f5;
+  --foreground: #1a1a2e;
+  --gold: #c89b4e;
+  --gold-dark: #9a6f09;
+  --navy: #0f172a;
+  --card-bg: #ffffff;
+  --section-alt: #eef0f3;
+  --font-display: 'Outfit', system-ui, sans-serif;
   --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -36,86 +56,177 @@ body {
   color: var(--foreground);
   overflow-x: hidden;
   font-family: var(--font-inter), sans-serif;
+  line-height: 1.6;
 }
 
 /* Custom premium scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: #e2e8f0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1c1c1c;
-  border: 2px solid #050505;
-  border-radius: 4px;
+  background: var(--gold);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: var(--gold-dark);
 }
 
-/* Custom animations & gradients */
+/* Gold gradient text */
 .gold-text-gradient {
-  background: linear-gradient(135deg, #f7f1d4 0%, #d4a53d 50%, #a76d22 100%);
+  background: linear-gradient(135deg, #c89b4e 0%, #f7e09a 50%, #b8860b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-border-gradient {
-  border-image: linear-gradient(to right, #a76d22, #d4a53d, #eedda7, #d4a53d, #a76d22) 1;
+/* Section heading style */
+.section-label {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold-dark);
 }
 
-.gold-gradient-bg {
-  background: linear-gradient(135deg, #a76d22 0%, #d4a53d 50%, #eedda7 100%);
+/* Card hover transition */
+.property-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
-/* Luxurious Walnut Wood Panel Texture using CSS Gradients */
-.wood-panel {
-  background-color: #2b1a0e;
-  background-image: 
-    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 0, 0, 0.15) 40px, rgba(0, 0, 0, 0.15) 80px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.7) 100%),
-    repeating-radial-gradient(circle at 30% 20%, #442a18 0px, #2b1a0e 40px, #1c1007 80px);
-  background-size: 160px 100%, 100% 100%, 400px 400px;
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
-}
-
-.wood-grain-overlay {
+/* Image tile overlay */
+.tile-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.07;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
 }
 
-/* Ambient glow and lens flares */
-.ambient-glow {
-  filter: blur(140px);
-  pointer-events: none;
+/* Gold button */
+.btn-gold {
+  background: var(--gold);
+  color: white;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 12px 28px;
+  border: 2px solid var(--gold);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-gold:hover {
+  background: transparent;
+  color: var(--gold);
 }
 
-.will-change-transform {
-  will-change: transform;
+/* Outline button */
+.btn-outline {
+  background: transparent;
+  color: var(--gold-dark);
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 12px 28px;
+  border: 2px solid var(--gold);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: white;
 }
 
-.will-change-opacity {
-  will-change: opacity;
+/* Animate fade in up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease forwards;
 }
 
-/* Custom cursor */
-.cursor-hide {
-  cursor: none;
+/* Ken Burns — slow zoom loop for hero background image */
+@keyframes kenBurns {
+  0%   { transform: scale(1.0) translate(0%, 0%); }
+  25%  { transform: scale(1.08) translate(-1%, -0.5%); }
+  50%  { transform: scale(1.12) translate(1%, -1%); }
+  75%  { transform: scale(1.08) translate(0.5%, 1%); }
+  100% { transform: scale(1.0) translate(0%, 0%); }
 }
 
-.cursor-hide a,
-.cursor-hide button,
-.cursor-hide select,
-.cursor-hide [role="button"] {
-  cursor: none;
+/* WhatsApp float button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 52px;
+  height: 52px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.5);
 }
 
-/* Hide Next.js Dev Indicator portal in local preview for a pristine design canvas */
+/* Hide Next.js Dev portal */
 nextjs-portal {
   display: none !important;
+}
+
+/* Marquee / clients scroll */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 22s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  z-index: 100;
+  border-top: 3px solid var(--gold);
+}
+.dropdown-trigger:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: #334155;
+  transition: background 0.2s, color 0.2s;
+}
+.dropdown-menu a:hover {
+  background: #f8f5ee;
+  color: var(--gold-dark);
 }

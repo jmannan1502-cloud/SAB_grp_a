@@ -1,76 +1,197 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { Phone } from "lucide-react";
+
+const propertyTabs = [
+  { label: "Residential", href: "#verticals" },
+  { label: "Commercial", href: "#verticals" },
+  { label: "Farm Houses", href: "#verticals" },
+  { label: "Rented Properties for Sale", href: "#verticals" },
+];
 
 export default function Hero() {
-  const stats = [
-    { value: "$4.8B+", label: "ACTIVE PORTFOLIO" },
-    { value: "14", label: "GLOBAL VERTICALS" },
-    { value: "03", label: "SELECT DESTINATIONS" },
-    { value: "100%", label: "DISCREET BROKERAGE" },
-  ];
-
   return (
     <section
-      className="relative w-full min-h-screen flex flex-col justify-between bg-matte-dark text-white overflow-hidden py-24 px-6 md:px-12"
+      className="relative w-full flex flex-col justify-center overflow-hidden"
       id="hero"
+      style={{ minHeight: "92vh" }}
     >
-      {/* Background Image */}
+      {/* Background Image — Ken Burns zoom loop */}
       <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center opacity-40 pointer-events-none"
-        style={{ backgroundImage: `url('/images/villa.png')` }}
-      />
-      
-      {/* Luxury Radial Shadow Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-matte-dark via-transparent to-matte-dark pointer-events-none" />
-
-      {/* Top spacing to offset fixed navbar */}
-      <div className="h-16" />
-
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full my-auto flex flex-col items-start">
-        <span className="font-sans text-xs tracking-[0.4em] text-gold-400 font-semibold mb-6 block uppercase">
-          CURATED ARCHITECTURAL MASTERPIECES
-        </span>
-        
-        <h2 className="font-serif text-5xl md:text-8xl tracking-tight text-white font-light leading-[1.05] max-w-5xl mb-8">
-          Where <span className="font-serif italic text-gold-300">artistry</span> meets the absolute boundary of <span className="font-serif italic text-gold-200">living</span>.
-        </h2>
-
-        <div className="flex flex-col md:flex-row gap-8 items-start md:items-center w-full justify-between mt-4">
-          <p className="font-sans text-sm md:text-base text-gray-400 tracking-wider max-w-xl leading-relaxed">
-            SAB Group defines the ultimate apex of bespoke residential development. We conceptualize, build, and list properties that stand as permanent sculptural testaments to luxury.
-          </p>
-          
-          <a
-            href="#projects"
-            className="flex items-center gap-4 group cursor-pointer"
-            data-hover="EXPLORE"
-          >
-            <span className="font-sans text-xs tracking-[0.3em] text-gold-400 uppercase font-semibold border-b border-gold-400/30 pb-1 group-hover:border-gold-300 transition-all duration-300">
-              EXPLORE COLLECTIONS
-            </span>
-            <div className="w-8 h-8 rounded-full border border-gold-400/30 flex items-center justify-center group-hover:bg-gold-400/10 group-hover:border-gold-300 transition-all duration-300">
-              <ChevronDown className="w-3.5 h-3.5 text-gold-400 group-hover:translate-y-0.5 transition-transform duration-300" />
-            </div>
-          </a>
-        </div>
+        className="absolute inset-0 w-full h-full overflow-hidden"
+        aria-hidden="true"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero_building.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{
+            animation: "kenBurns 24s ease-in-out infinite",
+            transformOrigin: "center center",
+            willChange: "transform",
+          }}
+        />
       </div>
 
-      {/* Bottom Metrics Bar */}
+      {/* Overlay — light enough to show buildings clearly */}
       <div
-        className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-t border-gold-900/25 pt-12 mt-16"
-      >
-        {stats.map((stat, idx) => (
-          <div key={idx} className="flex flex-col gap-1 items-start">
-            <span className="font-serif text-4xl md:text-5xl tracking-tight text-gold-300">
-              {stat.value}
-            </span>
-            <span className="font-sans text-[9px] md:text-[10px] tracking-[0.25em] text-gray-500 font-semibold uppercase">
-              {stat.label}
-            </span>
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(5,10,20,0.45) 0%, rgba(5,10,20,0.28) 45%, rgba(5,10,20,0.55) 100%)",
+        }}
+      />
+
+      {/* Side vignettes for depth */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.35) 100%)",
+        }}
+      />
+
+      {/* Subtle gold line at bottom */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-1"
+        style={{ background: "linear-gradient(to right, transparent, #c89b4e 30%, #c89b4e 70%, transparent)" }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center text-center px-4 md:px-8 py-20">
+        {/* Pre-heading label */}
+        <div
+          className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-sm text-xs font-semibold tracking-widest uppercase"
+          style={{ background: "rgba(200,155,78,0.18)", border: "1px solid rgba(200,155,78,0.4)", color: "#f0d080" }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#c89b4e" }} />
+          Trusted Real Estate Consultants Since 2000
+        </div>
+
+        {/* Main Heading */}
+        <h1
+          className="font-bold leading-tight text-white mb-6"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: "clamp(2rem, 5.5vw, 4.5rem)",
+            maxWidth: "900px",
+            textShadow: "0 2px 20px rgba(0,0,0,0.5)",
+          }}
+        >
+          We Help You Make the{" "}
+          <span style={{ color: "#f0c040" }}>Best Decision</span>
+        </h1>
+
+        {/* Subtitle */}
+        <p
+          className="mb-12 leading-relaxed"
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "clamp(0.95rem, 2vw, 1.15rem)",
+            color: "rgba(226,232,240,0.85)",
+            maxWidth: "580px",
+          }}
+        >
+          End-to-end real estate solutions for residential, commercial, and industrial
+          properties across Pan India. Backed by 25+ years of expertise.
+        </p>
+
+        {/* Find Your Property Widget */}
+        <div
+          className="w-full max-w-[1200px] mt-8 py-12 px-4 md:px-10 flex flex-col items-center shadow-2xl"
+          style={{
+            background: "rgba(15, 15, 15, 0.85)",
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          {/* Widget Header */}
+          <h2
+            className="text-white mb-8"
+            style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              fontWeight: 400,
+              letterSpacing: "0.02em",
+            }}
+          >
+            Find your property
+          </h2>
+
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-4 w-full">
+            {propertyTabs.map((tab, idx) => (
+              <a
+                key={tab.label}
+                href={tab.href}
+                id={`property-tab-${idx}`}
+                className="flex items-center justify-center px-6 md:px-8 py-3 transition-all duration-300"
+                style={{
+                  border: "1px solid #d98538",
+                  color: "#d98538",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "15px",
+                  fontWeight: 600,
+                  background: "transparent",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(217, 133, 56, 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "transparent";
+                }}
+              >
+                {tab.label}
+              </a>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* CTA Row */}
+        <div className="flex flex-wrap gap-4 mt-10 justify-center">
+          <a
+            href="#contact"
+            className="btn-gold"
+            style={{ borderRadius: "4px" }}
+            id="hero-cta-primary"
+          >
+            <Phone className="w-4 h-4" />
+            Request A Call
+          </a>
+          <a
+            href="#about"
+            className="btn-outline"
+            style={{ borderRadius: "4px", color: "white", borderColor: "rgba(200,155,78,0.7)" }}
+            id="hero-cta-secondary"
+          >
+            About SAB Group
+          </a>
+        </div>
+
+        {/* Stats Row */}
+        <div
+          className="flex flex-wrap justify-center gap-8 mt-14 pt-10 w-full max-w-3xl"
+          style={{ borderTop: "1px solid rgba(200,155,78,0.2)" }}
+        >
+          {[
+            { value: "25+", label: "Years Experience" },
+            { value: "500+", label: "Happy Clients" },
+            { value: "Pan India", label: "Coverage" },
+            { value: "₹1000Cr+", label: "Deals Closed" },
+          ].map((stat) => (
+            <div key={stat.label} className="flex flex-col items-center gap-1">
+              <span
+                className="font-bold"
+                style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.2rem)", color: "#f0d080" }}
+              >
+                {stat.value}
+              </span>
+              <span style={{ fontSize: "11px", color: "rgba(148,163,184,0.9)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

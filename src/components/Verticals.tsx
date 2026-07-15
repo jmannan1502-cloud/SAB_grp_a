@@ -1,144 +1,197 @@
 "use client";
 
-import { useState } from "react";
-import { Landmark, Compass, Trees, Anchor } from "lucide-react";
+import { ArrowRight, HardHat, BarChart3, FileText, Handshake } from "lucide-react";
 
-export default function Verticals() {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+const commercialCategories = [
+  { label: "Office Space", image: "/images/detail.png", desc: "Premium office spaces in prime business districts" },
+  { label: "Independent Building", image: "/images/lobby.png", desc: "Standalone commercial buildings for institutional buyers" },
+  { label: "Retail Space", image: "/images/villa.png", desc: "High-street and mall-based retail opportunities" },
+  { label: "Warehouse", image: "/images/detail.png", desc: "Logistics and warehousing hubs Pan India" },
+  { label: "Pan India", image: "/images/lobby.png", desc: "Commercial properties across all major Indian metros" },
+];
 
-  const verticals = [
-    {
-      title: "Residences",
-      prefix: "01 // ESTATES",
-      icon: <Landmark className="w-6 h-6 text-gold-400" />,
-      tagline: "Sculpted Private Havens",
-      desc: "Bespoke residential estates designed as permanent art installations. Carved from native stone, wood, and glass, placed in the world's most coveted coordinates, from Cliffside Monaco to Palm Jumeirah.",
-      bgClass: "from-amber-950/20 via-stone-900/40 to-matte-dark",
-      glowColor: "rgba(212, 165, 61, 0.15)",
-    },
-    {
-      title: "Archipelago",
-      prefix: "02 // ISLANDS",
-      icon: <Compass className="w-6 h-6 text-gold-400" />,
-      tagline: "Private Ocean Spheres",
-      desc: "Entire private island ecosystems engineered for complete autonomy and absolute privacy. Sustainable modern architectural hubs blending seamlessly with virgin coastlines.",
-      bgClass: "from-blue-950/20 via-slate-900/40 to-matte-dark",
-      glowColor: "rgba(96, 165, 250, 0.1)",
-    },
-    {
-      title: "Sanctuaries",
-      prefix: "03 // RETREATS",
-      icon: <Trees className="w-6 h-6 text-gold-400" />,
-      tagline: "Bespoke Wellness Havens",
-      desc: "Bespoke members-only clubs and healing architecture integrated deep inside private cedar forests and hot springs. Places designed to quiet the mind and rejuvenate the cellular body.",
-      bgClass: "from-emerald-950/20 via-zinc-900/40 to-matte-dark",
-      glowColor: "rgba(52, 211, 153, 0.1)",
-    },
-    {
-      title: "Marine",
-      prefix: "04 // YACHTING",
-      icon: <Anchor className="w-6 h-6 text-gold-400" />,
-      tagline: "Custom Elite Vessel Bays",
-      desc: "Custom superyacht slips, private marinas, and structural architectural bays built to house floating masterpieces. Designing transitions from land to sea with zero aesthetic friction.",
-      bgClass: "from-cyan-950/20 via-neutral-900/40 to-matte-dark",
-      glowColor: "rgba(34, 211, 238, 0.1)",
-    },
-  ];
+const residentialCategories = [
+  { label: "Builder Floors", image: "/images/villa.png", desc: "Independent builder floors in prime residential areas" },
+  { label: "Apartments", image: "/images/lobby.png", desc: "Premium apartments from top developers" },
+  { label: "Independent Bungalow", image: "/images/detail.png", desc: "Luxury bungalows and villas for discerning buyers" },
+  { label: "Farmhouse", image: "/images/villa.png", desc: "Sprawling farmhouses on city outskirts" },
+];
 
+function CategoryTile({ item, size = "normal" }: { item: typeof commercialCategories[0]; size?: "normal" | "large" }) {
   return (
-    <section
-      className="relative w-full min-h-screen bg-matte-dark text-white py-32 px-6 md:px-12 flex flex-col justify-center border-t border-gold-900/10 overflow-hidden"
-      id="verticals"
+    <div
+      className="relative overflow-hidden group cursor-pointer property-card rounded-sm"
+      style={{ aspectRatio: size === "large" ? "1/1.1" : "4/3" }}
+      id={`tile-${item.label.replace(/\s+/g, "-").toLowerCase()}`}
     >
-      <div className="max-w-7xl mx-auto w-full mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <span className="font-sans text-[10px] tracking-[0.4em] text-gold-400 font-semibold mb-4 block uppercase">
-            OUR BUSINESS SPHERES
-          </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-light tracking-tight">
-            Curated Verticals
-          </h2>
-        </div>
-        <p className="font-sans text-xs md:text-sm text-gray-400 tracking-wider max-w-md leading-relaxed">
-          Four distinct avenues of luxury development, unified by one single design principle: constructing spaces that represent the absolute pinnacle of human craftsmanship.
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={item.image}
+        alt={item.label}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+
+      {/* Overlay */}
+      <div className="tile-overlay" />
+
+      {/* Bottom Label */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
+        <h3
+          className="font-bold text-white mb-1"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: size === "large" ? "18px" : "15px",
+            textShadow: "0 1px 6px rgba(0,0,0,0.5)",
+          }}
+        >
+          {item.label}
+        </h3>
+        <p
+          className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{ fontSize: "12px", color: "rgba(226,232,240,0.85)" }}
+        >
+          {item.desc}
         </p>
       </div>
 
-      {/* Interactive Horizontal Accordion Grid */}
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-4 gap-4 h-[600px] lg:h-[450px]">
-        {verticals.map((vert, idx) => {
-          const isHovered = hoveredIdx === idx;
-          const isAnyHovered = hoveredIdx !== null;
-
-          return (
-            <div
-              key={idx}
-              onMouseEnter={() => setHoveredIdx(idx)}
-              onMouseLeave={() => setHoveredIdx(null)}
-              className={`relative overflow-hidden border border-gold-900/15 p-8 flex flex-col justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-sm bg-gradient-to-b ${
-                vert.bgClass
-              } ${
-                isHovered
-                  ? "lg:col-span-2 border-gold-400/50 scale-[1.01]"
-                  : isAnyHovered
-                  ? "lg:col-span-0.67 opacity-50 filter blur-[1px] scale-[0.99]"
-                  : "lg:col-span-1"
-              }`}
-              style={{
-                boxShadow: isHovered
-                  ? `0 20px 40px -10px ${vert.glowColor}, inset 0 0 40px rgba(0, 0, 0, 0.5)`
-                  : "inset 0 0 20px rgba(0, 0, 0, 0.4)",
-              }}
-              data-hover="EXPLORE"
-            >
-              {/* Top Row: Index and Icon */}
-              <div className="flex justify-between items-start">
-                <span className="font-sans text-[9px] tracking-[0.25em] text-gray-500 font-semibold">
-                  {vert.prefix}
-                </span>
-                <div
-                  className={`p-3 rounded-full border border-gold-900/20 bg-matte-dark/60 transition-all duration-500 ${
-                    isHovered ? "border-gold-400/40 rotate-12 bg-matte-dark/20" : ""
-                  }`}
-                >
-                  {vert.icon}
-                </div>
-              </div>
-
-              {/* Bottom Row: Content */}
-              <div className="flex flex-col items-start gap-4">
-                <h3 className="font-serif text-2xl md:text-3xl tracking-tight text-white leading-none">
-                  {vert.title}
-                </h3>
-                
-                <span className="font-sans text-[10px] tracking-widest text-gold-300 font-semibold uppercase">
-                  {vert.tagline}
-                </span>
-
-                {/* Smooth Height Reveal for details */}
-                <div
-                  className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    isHovered
-                      ? "max-h-60 opacity-100 mt-2"
-                      : "max-h-0 opacity-0 lg:max-h-0 pointer-events-none"
-                  }`}
-                >
-                  <p className="font-sans text-xs md:text-sm text-gray-400 tracking-wider leading-relaxed">
-                    {vert.desc}
-                  </p>
-                </div>
-              </div>
-
-              {/* Subtle gold line on bottom left for active card */}
-              <div
-                className={`absolute bottom-0 left-0 h-1 bg-gold-400 transition-all duration-700 ${
-                  isHovered ? "w-full" : "w-0"
-                }`}
-              />
-            </div>
-          );
-        })}
+      {/* Gold top badge on hover */}
+      <div
+        className="absolute top-3 right-3 px-3 py-1 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: "#c89b4e", fontSize: "10px", color: "white", letterSpacing: "0.1em", fontWeight: 600 }}
+      >
+        VIEW
       </div>
+    </div>
+  );
+}
+
+export default function Verticals() {
+  return (
+    <section id="verticals" style={{ background: "#f0f2f5" }}>
+
+      {/* ── Commercial Properties Section ── */}
+      <div className="py-16 md:py-20 px-4 md:px-8" style={{ borderTop: "1px solid #e2e8f0" }}>
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="section-label mb-3 block">Our Offerings</span>
+              <h2
+                className="font-bold"
+                style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", color: "#0f172a" }}
+              >
+                Commercial Properties
+              </h2>
+            </div>
+            <a
+              href="#projects"
+              className="flex items-center gap-2 font-semibold transition-colors"
+              style={{ color: "#c89b4e", fontSize: "13px", letterSpacing: "0.05em" }}
+              id="commercial-view-all-link"
+            >
+              View All Commercial <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* Grid: 3 top + 2 bottom */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+            {commercialCategories.slice(0, 3).map((item) => (
+              <CategoryTile key={item.label} item={item} />
+            ))}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {commercialCategories.slice(3).map((item) => (
+              <CategoryTile key={item.label} item={item} size="large" />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Residential Properties Section ── */}
+      <div className="py-16 md:py-20 px-4 md:px-8" style={{ background: "#eef0f3", borderTop: "1px solid #e2e8f0" }}>
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="section-label mb-3 block">Find Your Home</span>
+              <h2
+                className="font-bold"
+                style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", color: "#0f172a" }}
+              >
+                Residential Properties
+              </h2>
+            </div>
+            <a
+              href="#projects"
+              className="flex items-center gap-2 font-semibold transition-colors"
+              style={{ color: "#c89b4e", fontSize: "13px" }}
+              id="residential-view-all-link"
+            >
+              View All Residential <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* Grid: 4 equal tiles */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {residentialCategories.map((item) => (
+              <CategoryTile key={item.label} item={item} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Services Banner ── */}
+      <div
+        className="py-16 px-4 md:px-8 text-white relative overflow-hidden"
+        style={{ background: "#0a101d" }}
+      >
+        {/* Decorative subtle gradient */}
+        <div 
+          className="absolute inset-0 pointer-events-none" 
+          style={{ background: "radial-gradient(circle at top right, rgba(200,155,78,0.08), transparent 70%)" }}
+        />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: HardHat, title: "Turnkey Projects", desc: "End-to-end project management" },
+              { icon: BarChart3, title: "Valuation & Advisory", desc: "Expert property valuation services" },
+              { icon: FileText, title: "Lease Administration", desc: "Complete lease management solutions" },
+              { icon: Handshake, title: "Brokerage Services", desc: "Trusted brokerage across India" },
+            ].map((service, idx) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={service.title}
+                  className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 group hover:shadow-2xl hover:-translate-y-1 cursor-default"
+                  style={{ 
+                    background: "rgba(255, 255, 255, 0.03)", 
+                    backdropFilter: "blur(12px)",
+                    border: "1px solid rgba(255, 255, 255, 0.05)",
+                  }}
+                  id={`service-card-${idx}`}
+                >
+                  <div 
+                    className="w-12 h-12 rounded-full flex flex-shrink-0 items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: "rgba(200,155,78,0.1)", border: "1px solid rgba(200,155,78,0.2)" }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: "#c89b4e" }} />
+                  </div>
+                  <div>
+                    <h3
+                      className="font-bold text-white mb-2 transition-colors duration-300 group-hover:text-[#c89b4e]"
+                      style={{ fontFamily: "'Outfit', sans-serif", fontSize: "16px" }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p style={{ fontSize: "13px", color: "rgba(226,232,240,0.7)", lineHeight: "1.5" }}>{service.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
