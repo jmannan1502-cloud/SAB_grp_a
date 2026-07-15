@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, HardHat, BarChart3, FileText, Handshake } from "lucide-react";
+import { ArrowRight, Building, TrendingUp, ClipboardCheck, Globe } from "lucide-react";
 
 const commercialCategories = [
   { label: "Office Space", image: "/images/detail.png", desc: "Premium office spaces in prime business districts" },
@@ -142,37 +142,31 @@ export default function Verticals() {
 
       {/* ── Services Banner ── */}
       <div
-        className="py-16 px-4 md:px-8 text-white relative overflow-hidden"
-        style={{ background: "#0a101d" }}
+        className="py-16 px-4 md:px-8 bg-slate-100"
       >
-        {/* Decorative subtle gradient */}
-        <div 
-          className="absolute inset-0 pointer-events-none" 
-          style={{ background: "radial-gradient(circle at top right, rgba(200,155,78,0.08), transparent 70%)" }}
-        />
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: HardHat, title: "Turnkey Projects", desc: "End-to-end project management" },
-              { icon: BarChart3, title: "Valuation & Advisory", desc: "Expert property valuation services" },
-              { icon: FileText, title: "Lease Administration", desc: "Complete lease management solutions" },
-              { icon: Handshake, title: "Brokerage Services", desc: "Trusted brokerage across India" },
+              { icon: Building, title: "Turnkey Projects", desc: "End-to-end project management" },
+              { icon: TrendingUp, title: "Valuation & Advisory", desc: "Expert property valuation services" },
+              { icon: ClipboardCheck, title: "Lease Administration", desc: "Complete lease management solutions" },
+              { icon: Globe, title: "Brokerage Services", desc: "Trusted brokerage across India" },
             ].map((service, idx) => {
               const Icon = service.icon;
               return (
                 <div
                   key={service.title}
-                  className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 group hover:shadow-2xl hover:-translate-y-1 cursor-default"
+                  className="flex items-start gap-4 p-6 rounded-xl transition-all duration-300 group hover:shadow-xl hover:-translate-y-1 cursor-default"
                   style={{ 
-                    background: "rgba(255, 255, 255, 0.03)", 
-                    backdropFilter: "blur(12px)",
-                    border: "1px solid rgba(255, 255, 255, 0.05)",
+                    backgroundColor: "#0f2a4a",
+                    border: "1px solid rgba(200,155,78,0.2)",
+                    boxShadow: "0 8px 20px -4px rgba(15, 42, 74, 0.2)"
                   }}
                   id={`service-card-${idx}`}
                 >
                   <div 
                     className="w-12 h-12 rounded-full flex flex-shrink-0 items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: "rgba(200,155,78,0.1)", border: "1px solid rgba(200,155,78,0.2)" }}
+                    style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(200,155,78,0.3)" }}
                   >
                     <Icon className="w-5 h-5" style={{ color: "#c89b4e" }} />
                   </div>
@@ -183,7 +177,7 @@ export default function Verticals() {
                     >
                       {service.title}
                     </h3>
-                    <p style={{ fontSize: "13px", color: "rgba(226,232,240,0.7)", lineHeight: "1.5" }}>{service.desc}</p>
+                    <p className="text-[13px] leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>{service.desc}</p>
                   </div>
                 </div>
               );

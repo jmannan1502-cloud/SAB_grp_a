@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone } from "lucide-react";
+import SpecularButton from "@/components/SpecularButton";
 
 const propertyTabs = [
   { label: "Residential", href: "#verticals" },
@@ -96,6 +97,23 @@ export default function Hero() {
           End-to-end real estate solutions for residential, commercial, and industrial
           properties across Pan India. Backed by 25+ years of expertise.
         </p>
+
+        <div className="mb-12">
+          <SpecularButton
+            size="lg"
+            radius={18}
+            lineColor="#c89b4e"
+            baseColor="#0a101d"
+            intensity={1.2}
+            followMouse
+            proximity={250}
+            onClick={() => {
+              document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Explore Projects
+          </SpecularButton>
+        </div>
 
         {/* Find Your Property Widget */}
         <div
