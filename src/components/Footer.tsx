@@ -126,14 +126,14 @@ export default function Footer() {
             {/* Social Icons */}
             <div className="flex gap-2">
               {[
-                { Icon: InstagramIcon, label: "Instagram" },
-                { Icon: LinkedinIcon, label: "LinkedIn" },
-                { Icon: FacebookIcon, label: "Facebook" },
-                { Icon: TwitterIcon, label: "Twitter" },
-              ].map(({ Icon, label }) => (
+                { Icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/sabprop/" },
+                { Icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61579467053882" },
+              ].map(({ Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target={href !== "#" ? "_blank" : undefined}
+                  rel={href !== "#" ? "noopener noreferrer" : undefined}
                   aria-label={label}
                   className="w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-200"
                   style={{ borderColor: "#334155", color: "#94a3b8" }}

@@ -104,7 +104,7 @@ export default function About() {
                   <div key={s.label}>
                     <div
                       className="font-bold"
-                      style={{ fontFamily: "'Outfit', sans-serif", fontSize: "1.8rem", color: "#d97706" }}
+                      style={{ fontFamily: "'Outfit', sans-serif", fontSize: "1.8rem", color: "#c2410c" }}
                     >
                       {s.value}
                     </div>
@@ -116,7 +116,10 @@ export default function About() {
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-wrap gap-3">
+              <div 
+                className="flex flex-wrap gap-3"
+                style={{ '--gold': '#c2410c', '--gold-dark': '#9a3412' } as React.CSSProperties}
+              >
                 <a href="#contact" className="btn-gold" id="about-request-call-btn">
                   <Phone className="w-4 h-4" />
                   Request A Call

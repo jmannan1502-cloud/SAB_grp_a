@@ -10,10 +10,11 @@ const FacebookIcon = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill
 const TwitterIcon = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>);
 
 const navLinks = [
+  { name: "Home", href: "#home", dropdown: null },
   { name: "About Us", href: "#about", dropdown: ["Company Profile", "Our Philosophy", "Why SAB Group"] },
   { name: "Services", href: "#verticals", dropdown: ["Commercial Properties", "Residential Properties", "Industrial", "Turnkey Projects"] },
   { name: "Properties", href: "#projects", dropdown: null },
-  { name: "Leadership", href: "#leadership", dropdown: null },
+  { name: "Blog", href: "#blog", dropdown: null },
   { name: "Contact", href: "#contact", dropdown: null },
 ];
 
@@ -32,65 +33,27 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Bar - Phone + Social */}
-      <div
-        className={`w-full bg-navy-900 text-white z-50 transition-all duration-300 ${
-          scrolled ? "fixed top-0 -translate-y-full opacity-0 pointer-events-none" : "relative"
-        }`}
-        style={{ backgroundColor: "#0f172a" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center py-2.5">
-          {/* Phone */}
-          <a
-            href="tel:+911141444000"
-            className="flex items-center gap-2 text-xs text-gray-300 hover:text-white transition-colors"
-          >
-            <Phone className="w-3.5 h-3.5 text-gold-400" style={{ color: "#c89b4e" }} />
-            <span style={{ color: "#d1d5db", fontSize: "12px" }}>+91-11-41444000 | +91-9810012345</span>
-          </a>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-3">
-            {[
-              { icon: InstagramIcon, href: "#", label: "Instagram" },
-              { icon: LinkedinIcon, href: "#", label: "LinkedIn" },
-              { icon: FacebookIcon, href: "#", label: "Facebook" },
-              { icon: TwitterIcon, href: "#", label: "Twitter" },
-            ].map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="w-7 h-7 rounded-full border border-gray-600 flex items-center justify-center hover:border-gold-400 hover:text-gold-400 transition-all duration-200"
-                style={{ color: "#9ca3af" }}
-              >
-                <Icon />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <header
         className={`w-full z-50 transition-all duration-300 ${
           scrolled
-            ? "fixed top-0 shadow-lg"
+            ? "fixed top-0 shadow-sm"
             : "relative"
         }`}
-        style={{ backgroundColor: "#ffffff", borderBottom: "1px solid #e2e8f0" }}
+        style={{ backgroundColor: "#f8f9fa" }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center py-3 md:py-4">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group" id="nav-logo">
+          <div className="flex-1 flex justify-start">
+            <a href="#" className="flex items-center gap-3 group" id="nav-logo">
             <div
               className="w-10 h-10 flex items-center justify-center rounded"
               style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
             >
               <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-                <path d="M3 21V9L12 3L21 9V21" stroke="#c89b4e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M9 21V15H15V21" stroke="#c89b4e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M9 9H9.01M12 9H12.01M15 9H15.01" stroke="#c89b4e" strokeWidth="2" strokeLinecap="round" />
+                <path d="M3 21V9L12 3L21 9V21" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 21V15H15V21" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 9H9.01M12 9H12.01M15 9H15.01" stroke="#f97316" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </div>
             <div className="flex flex-col leading-tight">
@@ -100,98 +63,118 @@ export default function Navbar() {
               >
                 SAB GROUP
               </span>
-              <span className="text-xs" style={{ color: "#c89b4e", fontSize: "10px", letterSpacing: "0.15em", fontFamily: "'Inter', sans-serif" }}>
-                REAL ESTATE CONSULTANTS
+              <span className="text-xs font-bold" style={{ color: "#f97316", fontSize: "10px", letterSpacing: "0.15em", fontFamily: "'Inter', sans-serif" }}>
+                PROPERTIES
               </span>
             </div>
-          </a>
+            </a>
+          </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1" id="desktop-nav">
-            {navLinks.map((link) => (
-              <div
-                key={link.name}
-                className="dropdown-trigger relative"
-                onMouseEnter={() => setActiveDropdown(link.name)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <a
-                  href={link.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-sm hover:text-gold-500"
-                  style={{
-                    color: "#334155",
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "13px",
-                    fontWeight: 500,
-                  }}
+          <nav className="hidden md:flex justify-center items-center shrink-0 mx-4" id="desktop-nav">
+            <div className="flex items-center gap-1 md:gap-3 lg:gap-6">
+              {navLinks.map((link) => (
+                <div
+                  key={link.name}
+                  className="dropdown-trigger relative py-2"
+                  onMouseEnter={() => setActiveDropdown(link.name)}
+                  onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  {link.name}
-                  {link.dropdown && (
-                    <ChevronDown
-                      className="w-3.5 h-3.5 transition-transform duration-200"
-                      style={{
-                        transform: activeDropdown === link.name ? "rotate(180deg)" : "rotate(0deg)",
-                        color: "#c89b4e",
-                      }}
-                    />
-                  )}
-                </a>
-
-                {/* Dropdown */}
-                {link.dropdown && activeDropdown === link.name && (
-                  <div
-                    className="absolute top-full left-0 py-2 rounded-b-sm"
+                  <a
+                    href={link.href}
+                    className="flex items-center gap-1 text-sm font-semibold transition-colors duration-200"
                     style={{
-                      background: "white",
-                      minWidth: "210px",
-                      boxShadow: "0 12px 40px rgba(0,0,0,0.12)",
-                      borderTop: "3px solid #c89b4e",
-                      zIndex: 100,
+                      color: link.name === "Home" ? "#0f172a" : "#475569",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "14px",
+                      position: "relative",
+                      paddingBottom: "4px"
+                    }}
+                    onMouseEnter={(e) => {
+                      if (link.name !== "Home") {
+                        (e.currentTarget as HTMLElement).style.color = "#0f172a";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (link.name !== "Home") {
+                        (e.currentTarget as HTMLElement).style.color = "#475569";
+                      }
                     }}
                   >
-                    {link.dropdown.map((item) => (
-                      <a
-                        key={item}
-                        href={link.href}
-                        className="block px-5 py-2.5 text-sm transition-colors duration-150"
-                        style={{ color: "#475569", fontSize: "13px" }}
-                        onMouseEnter={(e) => {
-                          (e.target as HTMLElement).style.background = "#f8f5ee";
-                          (e.target as HTMLElement).style.color = "#9a6f09";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.target as HTMLElement).style.background = "transparent";
-                          (e.target as HTMLElement).style.color = "#475569";
-                        }}
-                      >
-                        {item}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                    {link.name}
+                    {link.name === "Home" && (
+                      <span className="absolute bottom-0 left-0 w-full h-[2px]" style={{ backgroundColor: "#f97316" }}></span>
+                    )}
+                  </a>
 
-            <a
-              href="#contact"
-              className="ml-3 btn-gold text-sm"
-              style={{ borderRadius: "4px", fontSize: "13px", padding: "9px 20px" }}
-              id="nav-cta-btn"
-            >
-              Request A Call
-            </a>
+                  {/* Dropdown */}
+                  {link.dropdown && activeDropdown === link.name && (
+                    <div
+                      className="absolute top-full left-0 py-2 rounded-b-sm"
+                      style={{
+                        background: "white",
+                        minWidth: "210px",
+                        boxShadow: "0 12px 40px rgba(0,0,0,0.12)",
+                        borderTop: "3px solid #f97316",
+                        zIndex: 100,
+                      }}
+                    >
+                      {link.dropdown.map((item) => (
+                        <a
+                          key={item}
+                          href={link.href}
+                          className="block px-5 py-2.5 text-sm transition-colors duration-150"
+                          style={{ color: "#475569", fontSize: "13px" }}
+                          onMouseEnter={(e) => {
+                            (e.target as HTMLElement).style.background = "#f8f9fa";
+                            (e.target as HTMLElement).style.color = "#0f172a";
+                          }}
+                          onMouseLeave={(e) => {
+                            (e.target as HTMLElement).style.background = "transparent";
+                            (e.target as HTMLElement).style.color = "#475569";
+                          }}
+                        >
+                          {item}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </nav>
 
+          {/* Desktop Right */}
+          <div className="hidden md:flex flex-1 justify-end items-center gap-4">
+              <a href="https://www.facebook.com/profile.php?id=61579467053882" target="_blank" rel="noopener noreferrer" style={{ color: "#475569" }} className="hover:text-black transition-colors">
+                <FacebookIcon />
+              </a>
+              <a href="https://www.instagram.com/sabprop/" target="_blank" rel="noopener noreferrer" style={{ color: "#475569" }} className="hover:text-black transition-colors">
+                <InstagramIcon />
+              </a>
+              <a
+                href="tel:+911141444000"
+                className="ml-3 flex items-center gap-2 text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: "#1a1a1a", fontFamily: "'Inter', sans-serif" }}
+                id="nav-cta-btn"
+              >
+                <Phone className="w-4 h-4" />
+                Call Now
+              </a>
+            </div>
+
           {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded transition-colors"
-            style={{ color: "#0f172a" }}
-            aria-label="Toggle Menu"
-            id="mobile-menu-toggle"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden flex flex-1 justify-end">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded transition-colors"
+              style={{ color: "#0f172a" }}
+              aria-label="Toggle Menu"
+              id="mobile-menu-toggle"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -243,10 +226,15 @@ export default function Navbar() {
 
             {/* Social in mobile menu */}
             <div className="flex items-center gap-4 px-8 pt-8">
-              {[InstagramIcon, LinkedinIcon, FacebookIcon, TwitterIcon].map((Icon, i) => (
+              {[
+                { Icon: InstagramIcon, href: "https://www.instagram.com/sabprop/" },
+                { Icon: FacebookIcon, href: "https://www.facebook.com/profile.php?id=61579467053882" },
+              ].map(({ Icon, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href}
+                  target={href !== "#" ? "_blank" : undefined}
+                  rel={href !== "#" ? "noopener noreferrer" : undefined}
                   className="w-9 h-9 rounded-full border flex items-center justify-center transition-all"
                   style={{ borderColor: "#334155", color: "#94a3b8" }}
                 >
